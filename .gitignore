@@ -1,0 +1,8 @@
+workspace/*
+!workspace/.gitkeep
+wordlists/*
+!wordlists/.gitkeep
+*.pyc
+__pycache__/
+*.tar.gz
+tools/*/src/

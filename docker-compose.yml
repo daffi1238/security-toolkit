@@ -1,0 +1,27 @@
+###############################################################################
+# docker compose run toolkit   →  bash interactivo con todas las herramientas
+# docker compose build         →  reconstruir tras añadir tools
+###############################################################################
+
+services:
+  toolkit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        GO_VERSION: "1.23.4"
+        NODE_VERSION: "22"
+    image: security-toolkit:latest
+    container_name: security-toolkit
+    hostname: toolkit
+    stdin_open: true          # -i
+    tty: true                 # -t
+    volumes:
+      - ./workspace:/workspace          # tus proyectos / targets
+      - ./wordlists:/opt/toolkit/wordlists  # wordlists compartidas
+      - toolkit-cache:/opt/toolkit/venvs    # cache de venvs entre rebuilds
+    # Descomenta si necesitas acceso a red del host (escaneos, proxies, etc.)
+    # network_mode: host
+
+volumes:
+  toolkit-cache:
