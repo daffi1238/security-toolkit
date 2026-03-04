@@ -20,8 +20,7 @@ services:
       - ./workspace:/workspace          # tus proyectos / targets
       - ./wordlists:/opt/toolkit/wordlists  # wordlists compartidas
       - toolkit-cache:/opt/toolkit/venvs    # cache de venvs entre rebuilds
-    # Descomenta si necesitas acceso a red del host (escaneos, proxies, etc.)
-    # network_mode: host
+    network_mode: host
 
 volumes:
   toolkit-cache:
