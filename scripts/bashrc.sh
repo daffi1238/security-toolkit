@@ -30,6 +30,10 @@ echo -e "  Tools available:"
 for t in /opt/toolkit/bin/*; do
     [ -x "$t" ] && echo -e "    • $(basename $t)"
 done
+# System-level tools (installed via apt)
+for cmd in parallel nmap; do
+    command -v "$cmd" &>/dev/null && echo -e "    • $cmd (system)"
+done
 echo ""
 echo -e "  Tip: "tools" to list | "tool-info" for details"
 echo ""

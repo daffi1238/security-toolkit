@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libffi-dev \
         libssl-dev \
         nmap \
+        parallel \
         unzip \
         wget \
         zlib1g-dev \
