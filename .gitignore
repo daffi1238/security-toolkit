@@ -2,7 +2,15 @@ workspace/*
 !workspace/.gitkeep
 wordlists/*
 !wordlists/.gitkeep
+!wordlists/download.sh
 *.pyc
 __pycache__/
 *.tar.gz
 tools/*/src/
+
+# Datos sensibles — nunca en git
+*.env
+*.pem
+*_key.txt
+notify-config.yaml
+provider-config.yaml

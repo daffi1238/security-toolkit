@@ -25,9 +25,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         traceroute \
         jq \
         libffi-dev \
+        libpcap-dev \
         libssl-dev \
         nmap \
         parallel \
+        python3-pip \
         unzip \
         wget \
         zlib1g-dev \
@@ -80,7 +82,14 @@ RUN echo '. /root/.bashrc_toolkit' >> /root/.bashrc
 COPY scripts/entrypoint.sh /opt/toolkit/scripts/entrypoint.sh
 RUN chmod +x /opt/toolkit/scripts/entrypoint.sh
 
-# ── 9. Volumes for persistence ───────────────────────────────────────────────
+# ── 9.1 Recon / enum / exploit scripts ───────────────────────────────────────
+COPY scripts/recon/   /opt/toolkit/scripts/recon/
+COPY scripts/enum/    /opt/toolkit/scripts/enum/
+COPY scripts/exploit/ /opt/toolkit/scripts/exploit/
+RUN find /opt/toolkit/scripts/recon /opt/toolkit/scripts/enum \
+         /opt/toolkit/scripts/exploit -name "*.sh" -exec chmod +x {} \;
+
+# ── 10. Volumes for persistence ──────────────────────────────────────────────
 VOLUME ["/workspace"]
 
 WORKDIR /workspace

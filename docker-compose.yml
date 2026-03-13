@@ -17,10 +17,15 @@ services:
     stdin_open: true          # -i
     tty: true                 # -t
     volumes:
-      - ./workspace:/workspace          # tus proyectos / targets
-      - ./wordlists:/opt/toolkit/wordlists  # wordlists compartidas
-      - toolkit-cache:/opt/toolkit/venvs    # cache de venvs entre rebuilds
+      - ./workspace:/workspace                      # tus proyectos / targets
+      - ./wordlists:/opt/toolkit/wordlists          # wordlists compartidas
+      - toolkit-cache:/opt/toolkit/venvs            # cache de venvs entre rebuilds
+      - ./scripts/recon:/opt/toolkit/scripts/recon  # hot-reload sin rebuild
+      - ./scripts/enum:/opt/toolkit/scripts/enum
+      - ./scripts/exploit:/opt/toolkit/scripts/exploit
+      - nuclei-templates:/root/nuclei-templates     # templates persistentes
     network_mode: host
 
 volumes:
   toolkit-cache:
+  nuclei-templates:
